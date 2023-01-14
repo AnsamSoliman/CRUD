@@ -8,28 +8,54 @@ var searchCourse = document.getElementById('search');
 var addBtn = document.getElementById('submit');
 var deleteAllBtn = document.getElementById('deleteBtn');
 var data = document.getElementById('data');
+var currentIndex = 0;
 var courses=[];
 
 //create course
 addBtn.onclick = function(e) {
     e.preventDefault();
-    var course = {
-        courseName: courseName.value,
-        couseCategory: couseCategory.value,
-        coursePrice: coursePrice.value,
-        courseDescription: courseDescription.value,
-        courseCapacity: courseCapacity.value
+    if(addBtn.value == 'Add Course') {
+      addCourse();
+    }else{
+      updateCourse();
     }
-    courses.push(course);
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Course Added Successfully.',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    displayData();
-    clearInputs();   
+}
+//Add course 
+function addCourse(){
+  var course = {
+    courseName: courseName.value,
+    couseCategory: couseCategory.value,
+    coursePrice: coursePrice.value,
+    courseDescription: courseDescription.value,
+    courseCapacity: courseCapacity.value
+  }
+  courses.push(course);
+  Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Course Added Successfully.',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  displayData();
+  clearInputs();  
+}
+//update course
+function updateCourse(){
+  var course = {
+    courseName: courseName.value,
+    couseCategory: couseCategory.value,
+    coursePrice: coursePrice.value,
+    courseDescription: courseDescription.value,
+    courseCapacity: courseCapacity.value
+  }
+  courses[currentIndex].courseName = course.courseName;
+  courses[currentIndex].couseCategory = course.couseCategory;
+  courses[currentIndex].coursePrice = course.coursePrice;
+  courses[currentIndex].courseDescription = course.courseDescription;
+  courses[currentIndex].courseCapacity = course.courseCapacity;
+  displayData();
+  clearInputs();
 }
 //delete All courses
 deleteAllBtn.onclick = function(e) {
@@ -74,7 +100,7 @@ function displayData(){
                 <td>${courses[i].coursePrice}</td>
                 <td>${courses[i].courseDescription}</td>
                 <td>${courses[i].courseCapacity}</td>
-                <td><button class="btn btn-info">update</button></td>
+                <td><button class="btn btn-info" onclick="getCourse(${i})">update</button></td>
                 <td><button class="btn btn-danger" onclick="deleteCourse(${i})">delete</button></td>
                 </tr>
         `;   
@@ -123,5 +149,16 @@ searchCourse.onkeyup = function(){
         }
     }
     data.innerHTML = result;
+}
+//get course
+function getCourse(index){
+  var course = courses[index];
+  courseName.value = course.courseName;
+  couseCategory.value = course.couseCategory;
+  coursePrice.value = course.coursePrice;
+  courseDescription.value = course.courseDescription;
+  courseCapacity.value = course.courseCapacity;
+  addBtn.value = 'Update Course';
+  currentIndex = index;
 }
 
