@@ -22,22 +22,27 @@
             <h1>CRUD System</h1>
             <form>
                 <div class="mb-3">
-                    <label for="">course name</label>
+                    <label for="">course name <span class="text-danger">*</span></label>
                     <input class="inputs form-control" type="text" placeholder="cource name" id="courseName">
+                    <div class="text-danger d-none small" id="courseNameAlert">* Course Name should start with capital letter, numbers are not allowed.</div>
                 </div>
-                <label for="">course category</label>
+                <label for="">course category <span class="text-danger">*</span></label>
                 <input class="inputs form-control" type="text" placeholder="cource category" id="courseCategory">
+                <div class="text-danger d-none small" id="courseCategoryAlert">* Course Category should start with capital letter, numbers are not allowed.</div>
     
-                <label for="">course price</label>
+                <label for="">course price <span class="text-danger">*</span></label>
                 <input class="inputs form-control" type="number" placeholder="cource price" id="coursePrice">
+                <div class="text-danger d-none small" id="coursePriceAlert">* Please price should contains 3 digits.</div>
     
-                <label for="">course description</label>
+                <label for="">course description <span class="text-danger">*</span></label>
                 <textarea class="inputs form-control" placeholder="course description" id="courseDescription"></textarea>
-    
-                <label for="">course capacity</label>
+                <div class="text-danger d-none small" id="courseDesAlert">* Please Description should start with capital letter.</div>
+
+                <label for="">course capacity <span class="text-danger">*</span></label>
                 <input class="inputs form-control" type="number" placeholder="cource capacity" id="courseCapacity">
-    
-                <input type="submit" value="Add Course" class="btn btn-outline-secondary mt-3" id="submit"/>
+                <div class="text-danger d-none small" id="courseCapacityAlert">* Please Cpacity should contains 2-3 digits.</div>
+                
+                <input type="submit" value="Add Course" class="btn btn-outline-secondary mt-3" disabled id="submit"/>
                 <button class="btn btn-outline-secondary mt-3" type="reset">clear</button>
             </form>
         </div>
